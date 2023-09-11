@@ -1,4 +1,8 @@
 import { DataSource } from "typeorm";
+import { premission } from "./entites/permission.js";
+import { profile } from "console";
+import { User } from "./entites/User.js";
+import { role } from "./entites/role.js";
 
 
 const dataSource = new DataSource ({
@@ -9,9 +13,16 @@ const dataSource = new DataSource ({
     password: '',
     database: 'typeormproject',
     entities: [ 
-        
+        premission, 
+        profile,
+        User,
+        role
+
     ],
     synchronize: true
 });
+dataSource.initialize ().then (() => { 
+    console.log ("Data Source has been initialized!"); 
+    }).catch ((err) => { console.error ("Error during Data Source initialization"); });
 
 export default dataSource;
