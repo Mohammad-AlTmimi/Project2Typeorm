@@ -9,10 +9,9 @@ export class role extends BaseEntity{
     @PrimaryGeneratedColumn('uuid')
     id: String;
 
-    @Column({
-        enum:['admin' , 'user' , 'editor'],
-        default: 'user'
-    })
+    @Column('text',{  
+        default : 'user',
+         nullable: true})
     name: String
 
     @ManyToMany(() => User)
