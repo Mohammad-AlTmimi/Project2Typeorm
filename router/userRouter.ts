@@ -14,20 +14,19 @@ route.post('/addRole/:id', async (req, res) => {
         const user = await User.findOneBy({id});
         const role = await userRole.findOneBy({id:roleid});
         if(!user){
-            res.status(500).send('no user found')
+            res.status(500).send('There is no User with this id')
             return;
         }
         if(!role){
-            res.status(500).send('no role found')
+            res.status(500).send('There is no role with this id')
             return;
         }
         user.roles.push(role)
         await user.save()
-        res.status(201).send('role added')
+        res.status(201).send('Done')
     }
     catch (err) {
-        res.status(500).send('something went wrong')
-        console.error(err)
+        res.status(401).send('something went wrong')
     }
 })
 
@@ -35,7 +34,7 @@ route.post('/register', valid , async (req, res) => {
 
     try{
         const profile = new Profile();
-        profile.dateOfBirth = req.body.dob || new Date(new Date().setFullYear(new Date().getFullYear() - 40));
+        profile.dateOfBirth = req.body.dateOfBirth
         profile.firstName = req.body.firstName || "unknown";
         profile.lastName = req.body.lastName || "unknown";
         await profile.save();
@@ -43,7 +42,7 @@ route.post('/register', valid , async (req, res) => {
         const newUser = new User();
         newUser.username = `${req.body.firstName} ${req.body.lastName}` || "unkown";
         newUser.email = req.body.email || 'no email';
-        newUser.password = req.body.password || "loserhasnopasswordhaha";
+        newUser.password = req.body.password;
         newUser.type = req.body.type || 'user';
         newUser.profile = profile;
         let ids = req.body.roles as number[];
