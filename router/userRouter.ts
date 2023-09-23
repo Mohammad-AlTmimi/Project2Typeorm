@@ -10,8 +10,8 @@ const route = express()
 route.post('/addRole/:id', async (req, res) => {
     try {
         let id = Number(req.params.id);
-        let roleid = Number(req.body.id);
         const user = await User.findOneBy({id});
+        let roleid = Number(req.body.id);
         const role = await userRole.findOneBy({id:roleid});
         if(!user){
             res.status(500).send('There is no User with this id')
