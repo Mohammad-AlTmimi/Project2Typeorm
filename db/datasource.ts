@@ -21,8 +21,8 @@ const dataSource = new DataSource ({
     ],
     synchronize: true
 });
-dataSource.initialize ().then (() => { 
+const init = dataSource.initialize ().then (() => { 
     console.log ("Data Source has been initialized!"); 
     }).catch ((err) => { console.error ("Error during Data Source initialization"); });
 
-export default dataSource;
+export default {dataSource , init };

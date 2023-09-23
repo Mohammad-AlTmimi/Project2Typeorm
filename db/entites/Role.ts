@@ -19,7 +19,7 @@ export class role extends BaseEntity{
     @JoinTable()
     Users: User[]
 
-    @ManyToMany(() => premission)
+    @ManyToMany(() => premission, p => p.Roles,{eager:true})
     @JoinTable()
     Premissions: premission[]
 }
