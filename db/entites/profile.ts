@@ -5,10 +5,10 @@ export class Profile extends BaseEntity{
     @PrimaryGeneratedColumn('increment')
     id: Number;
 
-    @Column({nullable: false})
+    @Column()
     firstName: String
 
-    @Column({nullable: false})
+    @Column()
     lastName: String
 
     @Column()

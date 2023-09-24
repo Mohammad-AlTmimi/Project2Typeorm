@@ -4,14 +4,11 @@ import bcrypt from 'bcrypt';
 import  {Role}  from "./Role.js";
 
 @Entity()
-export class premission extends BaseEntity{
+export class Premission extends BaseEntity{
     @PrimaryGeneratedColumn('increment')
     id: Number;
 
-    @Column({
-        enum:['admin' , 'user' , 'editor'],
-        default: 'user'
-    })
+    @Column()
     name: String
 
     @ManyToMany(() => Role)

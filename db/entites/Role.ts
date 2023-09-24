@@ -2,7 +2,7 @@ import { generatePrime } from "crypto";
 import { BaseEntity, BeforeInsert, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import { User } from "./User.js";
-import { premission } from "./permission.js";
+import { Premission } from "./Permission.js";
 
 @Entity()
 export  class Role extends BaseEntity{
@@ -18,7 +18,7 @@ export  class Role extends BaseEntity{
     @JoinTable()
     Users: User[]
 
-    @ManyToMany(() => premission, p => p.Roles,{eager:true})
+    @ManyToMany(() => Premission, p => p.Roles,{eager:true})
     @JoinTable()
-    Premissions: premission[]
+    Premissions: Premission[]
 }

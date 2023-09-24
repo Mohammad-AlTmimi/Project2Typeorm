@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
-import { premission } from "./entites/permission.js";
-import { profile } from "console";
+import { Premission } from "./entites/Permission.js";
+import { Profile } from "./entites/Profile.js";
 import { User } from "./entites/User.js";
 import  {Role}  from "./entites/Role.js";
 
@@ -13,8 +13,8 @@ const dataSource = new DataSource ({
     password: '',
     database: 'typeormproject',
     entities: [ 
-        premission, 
-        profile,
+        Premission, 
+        Profile,
         User,
         Role
 
@@ -22,14 +22,12 @@ const dataSource = new DataSource ({
     synchronize: true
 });
 
-const init = async () => {
-    try {
-        await dataSource.initialize();
-        console.log("Data Source has been initialized!");
-    } catch (err) {
-        console.error("Error during Data Source initialization", err);
-    }
-};
+export const initDB = async () =>
+  await dataSource.initialize().then(() => {
+    console.log("Connected to DB!");
+  }).catch(err => {
+    console.error('Failed to connect to DB: ' + err);
+  });
 
 
-export default {dataSource , init };
+export default dataSource;

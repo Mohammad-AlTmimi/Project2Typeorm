@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { BaseEntity, BeforeInsert, Column, Entity, JoinTable, ManyToMany, OneToOne, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
-import { role } from "./role.js";
-import { Profile } from "./profile.js";
+import { Role } from "./Role.js";
+import { Profile } from "./Profile.js";
 let User = class User extends BaseEntity {
     async hashPassword() {
         if (this.password) {
@@ -23,7 +23,7 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);
 __decorate([
-    Column({ nullable: false }),
+    Column(),
     __metadata("design:type", String)
 ], User.prototype, "username", void 0);
 __decorate([
@@ -32,6 +32,10 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], User.prototype, "hashPassword", null);
+__decorate([
+    Column(),
+    __metadata("design:type", String)
+], User.prototype, "password", void 0);
 __decorate([
     Column({
         enum: ['user', 'admin', 'editor'],
@@ -42,10 +46,6 @@ __decorate([
 __decorate([
     Column({ nullable: false }),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
-__decorate([
-    Column({ nullable: false }),
-    __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
     OneToOne(() => Profile, p => p.id, { eager: true }),
@@ -53,7 +53,7 @@ __decorate([
     __metadata("design:type", Profile)
 ], User.prototype, "profile", void 0);
 __decorate([
-    ManyToMany(() => role),
+    ManyToMany(() => Role),
     JoinTable(),
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);

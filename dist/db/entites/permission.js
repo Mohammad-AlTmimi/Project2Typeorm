@@ -8,26 +8,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { role } from "./role.js";
-let premission = class premission extends BaseEntity {
+import { Role } from "./Role.js";
+let Premission = class Premission extends BaseEntity {
 };
 __decorate([
     PrimaryGeneratedColumn('increment'),
     __metadata("design:type", Number)
-], premission.prototype, "id", void 0);
+], Premission.prototype, "id", void 0);
 __decorate([
-    Column({
-        enum: ['admin', 'user', 'editor'],
-        default: 'user'
-    }),
+    Column(),
     __metadata("design:type", String)
-], premission.prototype, "name", void 0);
+], Premission.prototype, "name", void 0);
 __decorate([
-    ManyToMany(() => role),
+    ManyToMany(() => Role),
     JoinTable(),
     __metadata("design:type", Array)
-], premission.prototype, "Roles", void 0);
-premission = __decorate([
+], Premission.prototype, "Roles", void 0);
+Premission = __decorate([
     Entity()
-], premission);
-export { premission };
+], Premission);
+export { Premission };

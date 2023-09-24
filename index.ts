@@ -2,9 +2,9 @@ import "reflect-metadata"
 import 'dotenv/config'
 import express from 'express';
 import os from 'os';
-import db from './db/datasource.js'
+import dataSource, { initDB } from './db/datasource.js';
 import userRoute from './router/userRouter.js'
-import { premission } from "./db/entites/permission.js";
+import { Premission } from "./db/entites/Permission.js";
 import { Role as userRole} from "./db/entites/Role.js";
 
 const app = express();
@@ -28,7 +28,7 @@ app.post('/createRole', async (req, res) => {
     const role = new userRole();
     role.name = req.body.name;
     let ids = req.body.permissions as number[];
-    let permissions = await premission.find({
+    let permissions = await Premission.find({
         where: {
             id: In(ids)
         }
@@ -44,13 +44,13 @@ app.post('/createPermission', async (req, res) => {
         res.status(400).send('permission name needed')
         return;
     }
-    const permission = new premission();
+    const permission = new Premission();
     permission.name = req.body.name;
     await permission.save()
     res.status(201).send('permission created')
 })
 
 app.listen(PORT, () => {
-    db.init
+    initDB()
     console.log(`app is listening AT port ${PORT} `)
 })

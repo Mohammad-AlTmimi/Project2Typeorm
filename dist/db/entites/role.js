@@ -9,31 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User.js";
-import { premission } from "./permission.js";
-let role = class role extends BaseEntity {
+import { Premission } from "./Permission.js";
+let Role = class Role extends BaseEntity {
 };
 __decorate([
     PrimaryGeneratedColumn('increment'),
     __metadata("design:type", Number)
-], role.prototype, "id", void 0);
+], Role.prototype, "id", void 0);
 __decorate([
     Column('text', {
         default: 'user',
         nullable: true
     }),
     __metadata("design:type", String)
-], role.prototype, "name", void 0);
+], Role.prototype, "name", void 0);
 __decorate([
     ManyToMany(() => User),
     JoinTable(),
     __metadata("design:type", Array)
-], role.prototype, "Users", void 0);
+], Role.prototype, "Users", void 0);
 __decorate([
-    ManyToMany(() => premission, p => p.Roles, { eager: true }),
+    ManyToMany(() => Premission, p => p.Roles, { eager: true }),
     JoinTable(),
     __metadata("design:type", Array)
-], role.prototype, "Premissions", void 0);
-role = __decorate([
+], Role.prototype, "Premissions", void 0);
+Role = __decorate([
     Entity()
-], role);
-export { role };
+], Role);
+export { Role };

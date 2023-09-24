@@ -3,7 +3,7 @@ import "reflect-metadata"
 import  db  from '../db/datasource.js'
 import { User } from '../db/entites/User.js'
 import valid from '../middleWare/register.js';
-import { Profile } from '../db/entites/profile.js';
+import { Profile } from '../db/entites/Profile.js';
 
 import { In } from 'typeorm';
 import { stringify } from 'querystring';
