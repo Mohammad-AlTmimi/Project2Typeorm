@@ -4,21 +4,23 @@ import valid from '../middleWare/register.js';
 import { Profile } from '../db/entites/profile.js';
 import { role as userRole } from '../db/entites/role.js';
 import { In } from 'typeorm';
-
+import { stringify } from 'querystring';
+import  TypeUser  from '../types/User.js'
 const route = express()
 
-route.post('/addRole/:id', async (req, res) => {
+route.post('/addRole/:id', async (req: TypeUser.Request, res) => {
     try {
-        let id = Number(req.params.id);
-        const user = await User.findOneBy({id});
-        let roleid = Number(req.body.id);
-        const role = await userRole.findOneBy({id:roleid});
+        let id = Number((req.params.id)) || -1;
+        const user = await User.find({ id });
+        let roleid = Number(req.body.id) || -1;
+        const role = await userRole.findOneBy( {id: roleid} );
+        
         if(!user){
-            res.status(500).send('There is no User with this id')
+            res.status(401).send('There is no User with this id')
             return;
         }
         if(!role){
-            res.status(500).send('There is no role with this id')
+            res.status(401).send('There is no role with this id')
             return;
         }
         user.roles.push(role)

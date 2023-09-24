@@ -6,8 +6,8 @@ import { premission } from "./permission.js";
 
 @Entity()
 export class role extends BaseEntity{
-    @PrimaryGeneratedColumn('uuid')
-    id: String;
+    @PrimaryGeneratedColumn('increment')
+    id: Number;
 
     @Column('text',{  
         default : 'user',

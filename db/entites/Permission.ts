@@ -5,8 +5,8 @@ import { role } from "./role.js";
 
 @Entity()
 export class premission extends BaseEntity{
-    @PrimaryGeneratedColumn('uuid')
-    id: String;
+    @PrimaryGeneratedColumn('increment')
+    id: Number;
 
     @Column({
         enum:['admin' , 'user' , 'editor'],
