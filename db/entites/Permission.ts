@@ -1,7 +1,7 @@
 import { generatePrime } from "crypto";
 import { BaseEntity, BeforeInsert, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
-import { role } from "./role.js";
+import  {Role}  from "./Role.js";
 
 @Entity()
 export class premission extends BaseEntity{
@@ -14,7 +14,7 @@ export class premission extends BaseEntity{
     })
     name: String
 
-    @ManyToMany(() => role)
+    @ManyToMany(() => Role)
     @JoinTable()
-    Roles: role[]
+    Roles: Role[]
 }

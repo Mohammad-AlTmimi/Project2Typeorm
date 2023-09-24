@@ -1,13 +1,13 @@
 import { generatePrime } from "crypto";
 import { BaseEntity, BeforeInsert, Column, Entity, JoinTable, ManyToMany, OneToOne , JoinColumn , PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
-import { role } from "./role.js";
+import { Role } from "./Role.js";
 import { Profile } from "./profile.js";
 
 @Entity()
 export class User extends BaseEntity{
     @PrimaryGeneratedColumn('increment')
-    id: Number;
+    id: number;
 
     @Column({nullable: false})
     username: String;
@@ -18,6 +18,8 @@ export class User extends BaseEntity{
         this.password = await bcrypt.hash(this.password, 10)
         }
     }
+    @Column({ nullable: false})
+    password: string;
 
     @Column({
         enum:['user' , 'admin' , 'editor'],
@@ -25,8 +27,7 @@ export class User extends BaseEntity{
     })
     type: string 
 
-    @Column({ nullable: false})
-    password: string;
+    
 
     @Column({nullable: false})
     email: String
@@ -35,7 +36,7 @@ export class User extends BaseEntity{
     @JoinColumn()
     profile: Profile
 
-    @ManyToMany(() => role)
+    @ManyToMany(() => Role)
     @JoinTable()
-    roles: role[]
+    roles: Role[]
 }

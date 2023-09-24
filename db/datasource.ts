@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import { premission } from "./entites/permission.js";
 import { profile } from "console";
 import { User } from "./entites/User.js";
-import { role } from "./entites/role.js";
+import  {Role}  from "./entites/Role.js";
 
 
 const dataSource = new DataSource ({
@@ -16,7 +16,7 @@ const dataSource = new DataSource ({
         premission, 
         profile,
         User,
-        role
+        Role
 
     ],
     synchronize: true

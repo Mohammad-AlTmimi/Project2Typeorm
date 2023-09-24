@@ -5,7 +5,7 @@ import os from 'os';
 import db from './db/datasource.js'
 import userRoute from './router/userRouter.js'
 import { premission } from "./db/entites/permission.js";
-import { role as userRole} from "./db/entites/role.js";
+import { Role as userRole} from "./db/entites/Role.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;

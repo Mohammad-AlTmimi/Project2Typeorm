@@ -5,9 +5,9 @@ import { User } from "./User.js";
 import { premission } from "./permission.js";
 
 @Entity()
-export class role extends BaseEntity{
+export  class Role extends BaseEntity{
     @PrimaryGeneratedColumn('increment')
-    id: Number;
+    id: number;
 
     @Column('text',{  
         default : 'user',
