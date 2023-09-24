@@ -1,7 +1,6 @@
 import express from 'express';
 import "reflect-metadata";
 import { User } from '../db/entites/User.js';
-import valid from '../middleWare/register.js';
 import { Profile } from '../db/entites/Profile.js';
 import { In } from 'typeorm';
 import { Role } from '../db/entites/Role.js';
@@ -33,20 +32,20 @@ route.post('/addRole/:ID', async (req, res) => {
         res.status(401).send('something went bad');
     }
 });
-route.post('/register', valid, async (req, res) => {
+route.post('/register', async (req, res) => {
     try {
         const profile = new Profile();
-        profile.dateOfBirth = req.body.dateOfBirth;
+        //profile.dateOfBirth = req.body.dateOfBirth || Date.now()
         profile.firstName = req.body.firstName || "unknown";
         profile.lastName = req.body.lastName || "unknown";
         await profile.save();
         const newUser = new User();
         newUser.username = `${req.body.firstName} ${req.body.lastName}` || "unkown";
         newUser.email = req.body.email || 'no email';
-        newUser.password = req.body.password;
+        newUser.password = req.body.password || "123456";
         newUser.type = req.body.type || 'user';
         newUser.profile = profile;
-        let ids = req.body.roles;
+        let ids = req.body.roles || [];
         let roles = await Role.find({
             where: {
                 id: In(ids)

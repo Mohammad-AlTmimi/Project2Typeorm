@@ -1,5 +1,4 @@
 import "reflect-metadata"
-import 'dotenv/config'
 import express from 'express';
 import os from 'os';
 import dataSource, { initDB } from './db/datasource.js';

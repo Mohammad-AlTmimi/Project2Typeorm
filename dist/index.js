@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import 'dotenv/config';
 import express from 'express';
 import { initDB } from './db/datasource.js';
 import userRoute from './router/userRouter.js';
