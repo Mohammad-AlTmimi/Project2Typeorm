@@ -20,6 +20,7 @@ const dataSource = new DataSource ({
 
     ],
     synchronize: true
+
 });
 
 export const initDB = async () =>

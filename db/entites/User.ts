@@ -22,15 +22,16 @@ export class User extends BaseEntity{
     password: string;
 
     @Column({
-        enum:['user' , 'admin' , 'editor'],
-        default: 'user'
-    })
-    type: string 
+        type: 'enum',
+                enum:['user' , 'admin' , 'editor'],
+                default: 'user'
+            })
+            type: string
 
     
 
     @Column({nullable: false})
-    email: String
+    email: string
 
     @OneToOne(()=>Profile, p => p.id ,{eager: true})
     @JoinColumn()

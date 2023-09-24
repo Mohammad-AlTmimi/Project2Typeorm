@@ -38,6 +38,7 @@ __decorate([
 ], User.prototype, "password", void 0);
 __decorate([
     Column({
+        type: 'enum',
         enum: ['user', 'admin', 'editor'],
         default: 'user'
     }),
