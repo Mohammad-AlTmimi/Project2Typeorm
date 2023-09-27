@@ -1,7 +1,7 @@
-import dataSource, { initDB } from '../db/datasource.js';
+import dataSource, { initDB } from '../db/datasource';
 import { login } from "../dist/controllers/user.js";
 import jwt from 'jsonwebtoken';
-import { describe } from 'node:test';
+import { describe, it } from 'node:test'; 
 import router from '../router/userRouter.js'
 
 beforeAll(async () => {
