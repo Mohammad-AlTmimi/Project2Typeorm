@@ -5,7 +5,7 @@ import { Profile } from '../db/entites/Profile.js';
 import { In } from 'typeorm';
 import { Role } from '../db/entites/Role.js';
 const route = express.Router();
-route.post('/addRole/:ID', async (req, res) => {
+const AddRole = route.post('/addRole/:ID', async (req, res) => {
     try {
         let ID = Number(req.body.ID);
         // const role = new Role() ;
@@ -32,15 +32,15 @@ route.post('/addRole/:ID', async (req, res) => {
         res.status(401).send('something went bad');
     }
 });
-route.post('/register', async (req, res) => {
+const AddUser = route.post('/register', async (req, res) => {
     try {
         const profile = new Profile();
-        //profile.dateOfBirth = req.body.dateOfBirth || Date.now()
-        profile.firstName = req.body.firstName || "unknown";
-        profile.lastName = req.body.lastName || "unknown";
+        profile.dateOfBirth = req.body.dateOfBirth || new Date();
+        profile.firstName = req.body.firstNamep || "unknown";
+        profile.lastName = req.body.lastNamep || "unknown";
         await profile.save();
         const newUser = new User();
-        newUser.username = `${req.body.firstName} ${req.body.lastName}` || "unkown";
+        newUser.username = `${req.body.firstNameu} ${req.body.lastNameu}` || "unkown";
         newUser.email = req.body.email || 'no email';
         newUser.password = req.body.password || "123456";
         newUser.type = req.body.type || 'user';
@@ -72,8 +72,8 @@ route.get('/', async (req, res) => {
 });
 route.get('/:id', async (req, res) => {
     try {
-        let id = Number(req.params.id);
-        const user = await User.findBy({});
+        let ID = Number(req.params.id);
+        const user = await User.findOneBy({ id: ID });
         res.send(user);
     }
     catch (err) {
