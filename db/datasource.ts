@@ -1,8 +1,8 @@
 import { DataSource } from "typeorm";
-import { Premission } from "./entites/Permission.js";
 import { Profile } from "./entites/Profile.js";
 import { User } from "./entites/User.js";
 import  { Role }  from "./entites/Role.js";
+import { Premission } from "./entites/Permission.js";
 import "reflect-metadata"
 
 const dataSource = new DataSource ({

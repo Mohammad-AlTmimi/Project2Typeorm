@@ -15,7 +15,7 @@ import { request } from 'http';
 
 const route = express.Router()
 
-const AddRole = route.post('/addRole/:ID', async (req, res) => {
+route.post('/addRole/:ID', async (req, res) => {
     try {
         let ID = Number(req.body.ID);
         // const role = new Role() ;
@@ -48,7 +48,7 @@ const AddRole = route.post('/addRole/:ID', async (req, res) => {
     }
 })
 
-const AddUser = route.post('/register', async (req, res) => {
+route.post('/register', async (req, res) => {
 
     try{
         const profile = new Profile();

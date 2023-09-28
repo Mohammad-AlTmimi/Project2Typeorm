@@ -5,7 +5,7 @@ import { Profile } from '../db/entites/Profile.js';
 import { In } from 'typeorm';
 import { Role } from '../db/entites/Role.js';
 const route = express.Router();
-const AddRole = route.post('/addRole/:ID', async (req, res) => {
+route.post('/addRole/:ID', async (req, res) => {
     try {
         let ID = Number(req.body.ID);
         // const role = new Role() ;
@@ -32,7 +32,7 @@ const AddRole = route.post('/addRole/:ID', async (req, res) => {
         res.status(401).send('something went bad');
     }
 });
-const AddUser = route.post('/register', async (req, res) => {
+route.post('/register', async (req, res) => {
     try {
         const profile = new Profile();
         profile.dateOfBirth = req.body.dateOfBirth || new Date();
