@@ -39,6 +39,7 @@ route.post('/addRole/:ID', async (req, res) => {
             res.status(401).send('There is no role with this id')
             return;
         }
+        
         user.roles.push(role)
         await user.save()
         res.status(201).send('Done')
